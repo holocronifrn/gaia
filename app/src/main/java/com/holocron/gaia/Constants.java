@@ -7,6 +7,6 @@ public final class Constants {
 
     public static final String URL = "https://docs.google.com/spreadsheets/d/1BZ_jKebchm5rHU5eYXtQ_NFU5Ay0YfBPsF4unBYjRHM/pub?output=xlsx";
     public static final String FILENAME = "/sdcard/card.xlsx";
-
+    public static final String FILENAMESELECTION = "/sdcard/list.xlsx";
 
 }
