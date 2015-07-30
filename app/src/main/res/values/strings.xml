@@ -3,4 +3,10 @@
 
   <string name="hello_world">Hello world!</string>
   <string name="action_settings">Settings</string>
+
+  <string name="segunda">segunda</string>
+  <string name="terca">terça</string>
+  <string name="quarta">quarta</string>
+  <string name="quinta">quinta</string>
+  <string name="sexta">sexta</string>
 </resources>
