@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import com.holocron.gaia.R;
 
-/**
- * Created by S�vio on 26/07/2015.
- */
+
 public class Reclame extends ActionBarActivity {
 
     EditText editTextEmailConteudo;
@@ -59,12 +57,5 @@ public class Reclame extends ActionBarActivity {
         }
 
     }
-
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
 }
 
