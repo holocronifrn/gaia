@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="fill_parent"
                 android:layout_height="120sp"
-                android:src="@drawable/comida"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/comida" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -31,33 +31,73 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/texViewNome"
+                    android:text="Nome completo : "
+                    android:textAppearance="?android:attr/textAppearanceSmallPopupMenu" />
+
                 <EditText
-                    android:id="@+id/formulario"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginTop="10dp"
+
+                    android:id="@+id/editTextNomeCompleto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:ems="10">
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/textViewMatricula"
+                    android:text="Matrícula : "
+                    android:textAppearance="?android:attr/textAppearanceSmallPopupMenu" />
+
+                <EditText
+                    android:id="@+id/editTextMatricula"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:ems="10">
+
+                </EditText>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/textViewConteudo"
+                    android:text="Sua reclamação : "
+                    android:textAppearance="?android:attr/textAppearanceSmallPopupMenu" />
+
+                <EditText
+                    android:id="@+id/editTextEmailConteudo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:ems="10"
                     android:gravity="top"
-                    android:hint="Digite sua reclamação aqui."
                     android:inputType="textMultiLine"
-                    android:lines="50"
-
-                    />
-
-                <requestFocus />
-
+                    android:lines="6" />
 
                 <Button
-                    android:layout_width="match_parent"
+                    android:id="@+id/buttonSend"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:onClick="entrarOnclick"
+                    android:layout_alignParentLeft="true"
+                    android:onClick="onButtonClickSend"
                     android:text="Enviar Reclamação"
-                    android:textColor="#ff60614f" />
+                    android:textAppearance="?android:attr/textAppearanceSearchResultTitle" />
             </LinearLayout>
-
 
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>
