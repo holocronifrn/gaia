@@ -19,13 +19,14 @@
                 android:src="@drawable/comida"
                 android:scaleType="fitXY"/>
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="Sobre o Aplicativo"
-                android:textSize="13pt" />
+            <ImageView
+                android:id="@+id/sobre"
+                android:layout_width="200sp"
+                android:layout_height="80sp"
+                android:src="@drawable/sobre"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:layout_marginTop="20sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15sp"
                     android:layout_marginRight="15sp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="30sp"
                     android:gravity="center_horizontal"
                     android:text="@string/sobree"
                     android:textAlignment="center"
