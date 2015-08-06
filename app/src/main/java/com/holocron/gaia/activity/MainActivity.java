@@ -102,12 +102,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 break;
             case 3:
                 //BOT�O ATUALIZAR
-                if (NetworkStatus.isConnected(this)) {//verifica se existe conex�o
-                    //Referenciar o objeto novamente evida o erro de execu��o ao clicar v�rias vezes nele!
+                if (NetworkStatus.isConnected(this)) {//verifica se existe conexão
+                    //Referenciar o objeto novamente evida o erro de execução ao clicar varias vezes nele!
                     XlsxDownloadAsyncTask downloadBackground = new XlsxDownloadAsyncTask(MainActivity.this);
                     downloadBackground.execute();
                 } else {
-                    Toast.makeText(MainActivity.this, "ERRO! Verifique Sua Conex�o!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "ERRO! Verifique Sua Conexão!", Toast.LENGTH_LONG).show();
                 }
 
                 break;
