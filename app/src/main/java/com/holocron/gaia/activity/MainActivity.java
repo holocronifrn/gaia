@@ -1,7 +1,6 @@
 package com.holocron.gaia.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -16,7 +15,6 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,6 +26,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     private String[] states;
     private Spinner spinner;
+    private XlsxDownloadAsyncTask update;
     /**
      * Fragmento gerir os comportamentos, intera��es e apresenta��o da gaveta de navega��o.
      */
@@ -43,6 +42,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //UPDATE
+        update = new XlsxDownloadAsyncTask(MainActivity.this);
+        update.execute();
+        //ENDUPDATE
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();

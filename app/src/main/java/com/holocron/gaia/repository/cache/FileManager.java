@@ -24,12 +24,6 @@ public class FileManager {
         this.file = file;
     }
 
-    public FileManager() {
-
-    }
-
-    FileOutputStream out;
-
     public void write(BufferedInputStream buf) throws IOException {
 
         try {
@@ -43,25 +37,6 @@ public class FileManager {
             fos.write(baf.toByteArray());
             fos.flush();
             fos.close();
-
-//            //Metodos Antigos
-//            //out = context.openFileOutput(Constants.FILENAME, Context.MODE_PRIVATE);
-//            FileOutputStream out = new FileOutputStream(Constants.FILENAME);
-//            int i = 0;
-//            byte[] bytesIn = new byte[1024];
-//            while ((i = buf.read(bytesIn)) >= 0) {
-//                out.write(bytesIn, 0, i);
-//            }
-//            out.close();
-//
-//            FileOutputStream out = new FileOutputStream(Constants.FILENAME);
-//            int i = 0;
-//            byte[] bytesIn = new byte[1024];
-//            while ((i = buf.read(bytesIn)) >= 0) {
-//                out.write(bytesIn, 0, i);
-//            }
-//            out.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

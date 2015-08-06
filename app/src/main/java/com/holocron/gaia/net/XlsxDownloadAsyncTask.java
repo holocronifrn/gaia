@@ -23,6 +23,18 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
     private Context context;
     private ProgressDialog dialog;
 
+    //Dowload and Update
+    private long currentTime;
+    private File file;
+    private URL url;
+    private String downloadUrl;
+    private String fileName;
+    private long startTime;
+    private long lastModified;
+    private FileManager fileManager;
+    private BufferedInputStream bufferinstream;
+    private URLConnection uconn;
+
     public XlsxDownloadAsyncTask(Context context) {
         this.context = context;
     }
@@ -48,29 +60,23 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
     }
 
     private String downloadArquivoExcel() {
-        File file = new File(context.getCacheDir(),Constants.FILENAME);
-        String downloadUrl = Constants.URL;
-        String fileName = Constants.FILENAME;
+        file = new File(context.getCacheDir(), Constants.FILENAME);
+        downloadUrl = Constants.URL;
+        fileName = Constants.FILENAME;
 
         try {
-//            File root = android.os.Environment.getExternalStorageDirectory();
-//            File dir = new File(root.getAbsolutePath() + "/myclock/databases");
-//            if (dir.exists() == false) {
-//                dir.mkdirs();
-//            }
-
-            long currentTime = System.currentTimeMillis();
-            URL url = new URL(downloadUrl);
-            long startTime = System.currentTimeMillis();
+            currentTime = System.currentTimeMillis();
+            url = new URL(downloadUrl);
+            startTime = System.currentTimeMillis();
 
             Log.d("DownloadManager", "download url:" + url);
             Log.d("DownloadManager", "download file name:" + context.getCacheDir() + fileName);
 
-            URLConnection uconn = url.openConnection();
-            uconn.setReadTimeout(100000);
-            uconn.setConnectTimeout(100000);
+            uconn = url.openConnection();
+            uconn.setReadTimeout(Constants.TENSECONDS);
+            uconn.setConnectTimeout(Constants.TENSECONDS);
 
-            long lastModified = uconn.getHeaderFieldDate("Last-Modified", currentTime);
+            lastModified = uconn.getHeaderFieldDate("Last-Modified", currentTime);
 
             Log.d("Donw", "last modified " + lastModified);
             Log.d("Donw", "Update " + file.lastModified());
@@ -83,54 +89,18 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
 
             InputStream is = uconn.getInputStream();
 
-            FileManager fileManager = new FileManager(context, file);
-            BufferedInputStream bufferinstream = new BufferedInputStream(is);
+            fileManager = new FileManager(context, file);
+            bufferinstream = new BufferedInputStream(is);
 
-            if ((file.lastModified() + 86400000) < (lastModified)) {
+            if ((file.lastModified() + Constants.TWOHOURS) < (lastModified)) {
                 fileManager.write(bufferinstream);
+                Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + "sec");
 
-            } else {
-                return "Planilha Já Atualizada!";
             }
-            Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + "sec");
-            return "Arquivo Baixado";
+            return "Cardápio Atualizado!";
         } catch (IOException ioe) {
             Log.d("DownloadManager", "Error: " + ioe);
             return "Erro de Conexão.";
         }
-
-//        try {
-//            long currentTime = System.currentTimeMillis();
-//
-//            URL url = new URL(Constants.URL);
-//            url.getHost();
-//            url.getFile();
-//            url.getPort();
-//            url.getUserInfo();
-//            URLConnection con = (URLConnection) url.openConnection();
-//
-//            long lastModified = con.getHeaderFieldDate("Last-Modified", currentTime);
-//
-//            Log.d("CSV", "last modified "+lastModified);
-//
-//            FileManager fileTest = new FileManager();
-//
-//            Log.d("CSV", "Update "+ fileTest.lastModified());
-//
-//            if(fileTest.lastModified() < lastModified) {
-//                BufferedInputStream buf = new BufferedInputStream(con.getInputStream());
-//
-//                FileManager fileManager = new FileManager(context);
-//
-//                fileManager.write(buf);
-//
-//                buf.close();
-//                return "Arquivo Baixado";
-//            }else {
-//                return "Planilha Já Atualizada!";
-//            }
-//        } catch (IOException ioe) {
-//            return "Erro de Conexão.";
-//        }
     }
 }
