@@ -1,8 +1,14 @@
 package com.holocron.gaia.repository.cache;
 
+import android.content.Context;
+
 import com.googlecode.jcsv.reader.CSVReader;
 import com.googlecode.jcsv.reader.internal.CSVReaderBuilder;
+import com.holocron.gaia.Constants;
+import com.holocron.gaia.activity.MainActivity;
+import com.holocron.gaia.net.XlsxDownloadAsyncTask;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,12 +22,21 @@ import java.util.List;
  */
 public class CsvFileManagerRead {
 
+    private Context context;
+    private File file;
+
+    public CsvFileManagerRead(Context context){
+        this.context = context;
+    }
+
+    public CsvFileManagerRead(){}
+
     public String meatType(int day, boolean meatType) throws IOException {
 
         String[] stringLunch = new String[5];
         String[] stringDinner = new String[5];
 
-        Reader reader = new FileReader("/storage/sdcard0/Cardápio - cantina IFRN - Página1(1).csv");
+        Reader reader = new FileReader("/storage/sdcard0/Cardápio - cantina IFRN - Página1(1).csv"); //
 
         CSVReader<String[]> csvMeatReader = CSVReaderBuilder.newDefaultReader(reader);
 

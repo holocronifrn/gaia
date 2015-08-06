@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.holocron.gaia.Constants;
+import com.holocron.gaia.repository.cache.CsvFileManagerRead;
 import com.holocron.gaia.repository.cache.FileManager;
 
 import java.io.BufferedInputStream;
@@ -37,6 +38,18 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
 
     public XlsxDownloadAsyncTask(Context context) {
         this.context = context;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public File getFile() {
+        return file;
     }
 
     @Override
@@ -90,6 +103,8 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
             InputStream is = uconn.getInputStream();
 
             fileManager = new FileManager(context, file);
+
+
             bufferinstream = new BufferedInputStream(is);
 
             if ((file.lastModified() + Constants.TWOHOURS) < (lastModified)) {
@@ -97,6 +112,7 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
                 Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + "sec");
 
             }
+
             return "Cardápio Atualizado!";
         } catch (IOException ioe) {
             Log.d("DownloadManager", "Error: " + ioe);
