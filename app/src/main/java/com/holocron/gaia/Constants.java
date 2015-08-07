@@ -7,5 +7,6 @@ public final class Constants {
     public static final long ONEWEEK = 604800000;
     public static final long ONEDAY = 86400000;
     public static final int TWOHOURS = 7200000;
-    public static final int TENSECONDS = 10000;
+    public static final int TIMEOUT_CONNECTION = 5000;
+    public static final int TIMEOUT_SOCKET = 5000;
 }

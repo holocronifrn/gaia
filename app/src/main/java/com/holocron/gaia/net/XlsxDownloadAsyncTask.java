@@ -174,25 +174,31 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
             Log.d("ImageManager", "downloaded file name:" + Constants.FILENAME);
                         /* Open a connection to that URL. */
             URLConnection ucon = url.openConnection();
-            ucon.setReadTimeout(Constants.TENSECONDS);
-            ucon.setConnectTimeout(Constants.TENSECONDS);
+            ucon.setReadTimeout(Constants.TIMEOUT_CONNECTION);
+            ucon.setConnectTimeout(Constants.TIMEOUT_SOCKET);
 
-            long lastModified = ucon.getHeaderFieldDate("Last-Modified", currentTime);
-            Log.d("Donw", "last modified " + lastModified);
+            //long lastModified = ucon.getHeaderFieldDate("Last-Modified", currentTime);
+            //Log.d("Donw", "last modified " + lastModified);
             Log.d("Donw", "Update " + fileTest.lastModified());
-            Log.d("Donw", "Diferença " + ((fileTest.lastModified() + Constants.TWOHOURS) - lastModified));
+            //Log.d("Donw", "Diferença " + ((fileTest.lastModified() + Constants.TWOHOURS) - lastModified));
                         /*
                          * Define InputStreams to read from the URLConnection.
                          */
 
-            if ((fileTest.lastModified() + Constants.TWOHOURS)  < (lastModified)) {
+            Date date = new Date(currentTime);
+            Date datee = new Date(fileTest.lastModified() + Constants.TWOHOURS);
+            Log.d("ImageManager", "Tempo do android" + datee);
+
+            Log.d("ImageManager", "Tempo do android" + date);
+
+            if ((fileTest.lastModified() + Constants.TWOHOURS) <= currentTime) {
                 Log.d("ImageManager", "Esta Baixando");
+
                 InputStream is = ucon.getInputStream();
                 BufferedInputStream bis = new BufferedInputStream(is);
                         /*
                          * Read bytes to the Buffer until there is nothing more to read(-1).
                          */
-
                 ByteArrayBuffer baf = new ByteArrayBuffer(50);
                 int current = 0;
                 while ((current = bis.read()) != -1) {
