@@ -63,8 +63,8 @@ public class Reclame extends ActionBarActivity {
         String data_completa = dateFormat.format(data_atual);
         String emailmatricula = matricula.getText().toString();
         String emailnome = nomeCompleto.getText().toString();
-        String emailTo = "saviorennan@gmail.com";
-        String emailSubject = data_completa+" -Reclamação"+ "/ "+ emailnome;
+        String emailTo = "coaes.pf@ifrn.edu.br";
+        String emailSubject = data_completa+" -Reclamação"+ "- "+ emailnome;
         String emailConteudoTeste= editTextEmailConteudo.getText().toString();
         String emailConteudo = editTextEmailConteudo.getText().toString()
                 + "\n\n"+ "Matrícula do aluno: " + emailmatricula + "\n";

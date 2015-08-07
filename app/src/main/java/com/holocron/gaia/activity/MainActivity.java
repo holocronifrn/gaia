@@ -34,7 +34,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private XlsxDownloadAsyncTask update;
     private TextView textLunch;
     private TextView textDinner;
-    private boolean contador = true;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
