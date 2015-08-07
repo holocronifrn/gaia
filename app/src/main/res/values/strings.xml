@@ -23,12 +23,13 @@
    \n- Aplicativo desenvolvido pelo grupo de estudos do laboratório LASINF.\n - Desenvolvedores: Herlan Assis, Jhoanes Freitas e Sávio Rennan. (Alunos do curso superior de Tecnologia em Análise e Desenvolvimento de Sistemas- TADS).\n\n- Essa é uma versão GAIA (1.0).\n
     </string>
 
+  <string name="diassemanas">Dias da semana</string>
   <string-array name="dias_semana_list">
-    <item>- Segunda</item>
-    <item>- Terça</item>
-    <item>- Quarta</item>
-    <item>- Quinta</item>
-    <item>- Sexta</item>
+    <item>Segunda</item>
+    <item>Terça</item>
+    <item>Quarta</item>
+    <item>Quinta</item>
+    <item>Sexta</item>
   </string-array>
 
 </resources>

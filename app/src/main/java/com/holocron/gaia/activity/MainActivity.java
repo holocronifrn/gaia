@@ -66,7 +66,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     }
 
     private void setupWeekSpinner() {
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.dias_semana_list, R.layout.spinner_item);
+        ArrayAdapter<CharSequence> adapter =
+                ArrayAdapter.createFromResource(this, R.array.dias_semana_list, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner = (Spinner) findViewById(R.id.semana_spinner);
         spinner.setAdapter(adapter);
@@ -125,12 +126,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     }
 
     private void updateXlsx() {
-        if (NetworkStatus.isConnected(this)) {//verifica se existe conex�o
-            //Referenciar o objeto novamente evida o erro de execu��o ao clicar v�rias vezes nele!
+        if (NetworkStatus.isConnected(this)) {//verifica se existe conexão
+            //Referenciar o objeto novamente evida o erro de execução ao clicar várias vezes nele!
             XlsxDownloadAsyncTask downloadBackground = new XlsxDownloadAsyncTask(MainActivity.this);
             downloadBackground.execute();
         } else {
-            Toast.makeText(MainActivity.this, "ERRO! Verifique Sua Conex�o!", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "ERRO! Verifique Sua Conexão!", Toast.LENGTH_LONG).show();
         }
     }
 
