@@ -46,7 +46,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:ems="10">
+                    android:ems="10"
+                    android:inputType="text">
 
                     <requestFocus />
                 </EditText>
@@ -86,7 +87,8 @@
                     android:ems="10"
                     android:gravity="top"
                     android:inputType="textMultiLine"
-                    android:lines="5" />
+                    android:lines="5"
+                    />
 
                 <Button
                     android:id="@+id/buttonSend"

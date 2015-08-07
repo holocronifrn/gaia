@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +30,6 @@ import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    private String[] states;
     private Spinner spinner;
     private XlsxDownloadAsyncTask update;
     private TextView textLunch;
@@ -37,13 +37,13 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    private CharSequence mTitle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d("Activity", "onCreate");
 
         textLunch = (TextView) findViewById(R.id.lunch);
         textDinner = (TextView) findViewById(R.id.dinner);
@@ -55,6 +55,41 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         setupNavigationDrawer();
         setupWeekSpinner();
+
+    }
+
+    protected void onStart(){
+        super.onStart();
+
+        Log.d("Activity", "onStart");
+
+    }
+
+    protected void onDestroy(){
+        super.onDestroy();
+
+        Log.d("Activity", "onDestroy");
+
+    }
+
+    protected void onStop(){
+        super.onStop();
+
+        Log.d("Activity", "onStop");
+
+    }
+
+    protected void onResume(){
+        super.onResume();
+
+        Log.d("Activity", "onResume");
+
+    }
+
+    protected void onPause(){
+        super.onPause();
+
+        Log.d("Activity", "onPause");
 
     }
 

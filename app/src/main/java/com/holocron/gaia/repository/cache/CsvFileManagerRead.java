@@ -23,7 +23,6 @@ import java.util.List;
 public class CsvFileManagerRead {
 
     private Context context;
-    private File file;
 
     public CsvFileManagerRead(Context context){
         this.context = context;
@@ -62,7 +61,7 @@ public class CsvFileManagerRead {
             for (int i = 0; i < 5; i++){
 
                 if (day == i)
-                    return " " + stringLunch[i];
+                    return stringLunch[i];
 
             }
 
@@ -82,10 +81,10 @@ public class CsvFileManagerRead {
             for (int i = 0; i < 5; i++){
 
                 if (day == i)
-                    return " " + stringDinner[i];
+                    return stringDinner[i];
 
             }
         }
-        return "Arquivo não encontrado!";
+        return "Error: file not found!";
     }
 }

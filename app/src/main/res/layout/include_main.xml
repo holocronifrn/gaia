@@ -1,112 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/container"
-android:layout_width="match_parent"
-android:layout_height="wrap_content">
-
-<ScrollView
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="fill_parent"
-            android:layout_height="120sp"
-            android:scaleType="fitXY"
-            android:src="@drawable/comida" />
-
-        <Spinner
-            android:id="@+id/semana_spinner"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:prompt="@string/diassemanas"
-            android:layout_marginBottom="10sp"
-            android:layout_marginTop="8sp"
-            >
-            </Spinner>
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="fill_parent"
+                android:layout_height="120sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/comida" />
+
+            <Spinner
+                android:id="@+id/semana_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:layout_marginTop="8sp"
+                android:prompt="@string/diassemanas"></Spinner>
             <!--android:layout_marginBottom="10sp"
             android:layout_marginTop="8sp"
             android:prompt="@string/diassemanas"/>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
 
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5sp"
-                android:stretchColumns="1">
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5sp"
+                    android:stretchColumns="1">
 
-                <TableRow
-                    android:id="@+id/almoco"
-                    android:layout_marginBottom="2sp"
-                    android:orientation="horizontal">
+                    <TableRow
+                        android:id="@+id/almoco"
+                        android:layout_marginBottom="2sp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:padding="3dip"
-                        android:text="Almoço"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        />
+                        <TextView
+                            android:padding="3dip"
+                            android:text="Almoço"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                </TableRow>
+                    </TableRow>
 
-                <TableRow
-                    android:id="@+id/lunching"
-                    android:layout_marginBottom="60sp"
-                    android:orientation="vertical">
+                    <TableRow
+                        android:id="@+id/lunching"
+                        android:layout_marginBottom="60sp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/lunch"
-                        android:padding="3dip"
-                        android:text="empty"
-                        android:textSize="15sp"
-                        android:textColor="#000000"
-                        android:inputType="textMultiLine"/>
+                        <TextView
+                            android:id="@+id/lunch"
+                            android:layout_width="wrap_content"
+                            android:padding="3dip"
+                            android:text="empty"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
 
-                </TableRow>
+                    </TableRow>
 
-                <View
-                    android:layout_height="2dip"
-                    android:background="#FF909090" />
+                    <View
+                        android:layout_height="2dip"
+                        android:background="#FF909090" />
 
-                <TableRow
-                    android:id="@+id/jantar"
-                    android:layout_marginBottom="2sp"
-                    android:orientation="horizontal">
+                    <TableRow
+                        android:id="@+id/jantar"
+                        android:layout_marginBottom="2sp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:padding="3dip"
-                        android:text="Jantar"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
-                </TableRow>
+                        <TextView
+                            android:padding="3dip"
+                            android:text="Jantar"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </TableRow>
 
-                <TableRow
-                    android:id="@+id/dinning"
-                    android:layout_marginBottom="60sp"
-                    android:orientation="vertical">
+                    <TableRow
+                        android:id="@+id/dinning"
+                        android:layout_marginBottom="60sp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/dinner"
-                        android:padding="3dip"
-                        android:text="empty"
-                        android:textSize="15sp"
-                        android:textColor="#000000"
-                        android:inputType="textMultiLine"/>
-                </TableRow>
+                        <TextView
+                            android:id="@+id/dinner"
+                            android:layout_width="wrap_content"
+                            android:padding="3dip"
+                            android:text="empty"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </TableRow>
 
-            </TableLayout>
+                </TableLayout>
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
 
 </FrameLayout>
