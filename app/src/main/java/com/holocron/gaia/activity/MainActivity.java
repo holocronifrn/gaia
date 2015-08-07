@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.holocron.gaia.R;
 import com.holocron.gaia.model.WeekDay;
+import com.holocron.gaia.net.FirstUpdade;
 import com.holocron.gaia.net.NetworkStatus;
 import com.holocron.gaia.net.XlsxDownloadAsyncTask;
 import com.holocron.gaia.repository.cache.CsvFileManagerRead;
@@ -31,7 +32,7 @@ import java.io.IOException;
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private Spinner spinner;
-    private XlsxDownloadAsyncTask update;
+    private FirstUpdade update;
     private TextView textLunch;
     private TextView textDinner;
 
@@ -49,7 +50,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         textDinner = (TextView) findViewById(R.id.dinner);
 
         //UPDATE
-        update = new XlsxDownloadAsyncTask(MainActivity.this);
+        update = new FirstUpdade(MainActivity.this);
         update.execute();
         //ENDUPDATE
 
