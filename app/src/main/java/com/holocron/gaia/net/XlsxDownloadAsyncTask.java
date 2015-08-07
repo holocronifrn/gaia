@@ -47,14 +47,6 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
         return context;
     }
 
-//    public void setFile(File file) {
-//        this.file = file;
-//    }
-//
-//    public File getFile() {
-//        return file;
-//    }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();

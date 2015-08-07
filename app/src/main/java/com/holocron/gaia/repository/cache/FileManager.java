@@ -43,14 +43,13 @@ public class FileManager {
     }
 
     public File read() {
-
         File file = new File(Constants.FILENAME);
-
-//        File file = new File(context.getCacheDir(), Constants.FILENAME).getAbsoluteFile();
+        //File file = new File(context.getCacheDir(), Constants.FILENAME).getAbsoluteFile();
 
         return file;
     }
 
+    //Ainda não usado
     public long lastModified() {
         long lastModified = 0;
         if (isExists()) {
@@ -60,6 +59,7 @@ public class FileManager {
         }
     }
 
+    //Ainda não usado
     public boolean isExists() {
         return read().exists();
     }
