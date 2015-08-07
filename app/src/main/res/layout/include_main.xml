@@ -40,7 +40,7 @@ android:layout_height="wrap_content">
 
                 <TableRow
                     android:id="@+id/almoco"
-                    android:layout_marginBottom="125sp"
+                    android:layout_marginBottom="2sp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -49,6 +49,20 @@ android:layout_height="wrap_content">
                         android:textSize="8pt"
 
                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/lunching"
+                    android:layout_marginBottom="125sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lunch"
+                        android:padding="3dip"
+                        android:text="empty"
+                        android:textSize="20sp" />
+
                 </TableRow>
 
                 <View
@@ -57,13 +71,25 @@ android:layout_height="wrap_content">
 
                 <TableRow
                     android:id="@+id/jantar"
-                    android:layout_marginBottom="125sp"
+                    android:layout_marginBottom="2sp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:padding="3dip"
                         android:text="Jantar"
                         android:textSize="8pt" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/dinning"
+                    android:layout_marginBottom="125sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/dinner"
+                        android:padding="3dip"
+                        android:text="empty"
+                        android:textSize="20sp" />
                 </TableRow>
 
             </TableLayout>

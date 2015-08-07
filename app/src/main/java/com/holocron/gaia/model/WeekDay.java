@@ -1,13 +1,8 @@
 package com.holocron.gaia.model;
 
-import com.holocron.gaia.R;
-
-/**
- * Created by jhoanes on 30/07/15.
- */
 public enum WeekDay {
 
-    MONDAY(R.string.segunda), TUESDAY(R.string.terca);
+    MONDAY(0), TUESDAY(1), WEDNESDAY(2), THURSDAY(3), FRIDAY(4);
 
     int value;
 
@@ -16,8 +11,18 @@ public enum WeekDay {
     }
 
     public int getValue() {
-        return this.value;
+        return value;
     }
+
+    public static WeekDay getDay(int position) {
+        for (WeekDay day: WeekDay.values()) {
+            if (day.value == position) {
+                return day;
+            }
+        }
+        return null;
+    }
+
 
 
 }

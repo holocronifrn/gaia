@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.holocron.gaia.Constants;
+import com.holocron.gaia.repository.cache.CsvFileManagerRead;
 import com.holocron.gaia.repository.cache.FileManager;
 
 import org.apache.http.util.ByteArrayBuffer;
@@ -42,6 +43,18 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
         this.context = context;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
+//    public void setFile(File file) {
+//        this.file = file;
+//    }
+//
+//    public File getFile() {
+//        return file;
+//    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -62,80 +75,146 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 
-    private String downloadArquivoExcel() {
-        try {
-//            file = new File(Constants.FILENAME);
-//            downloadUrl = Constants.URL;
-//            fileName = Constants.FILENAME;
+//    private String downloadArquivoExcel() {
+//        try {
+////            file = new File(Constants.FILENAME);
+////            downloadUrl = Constants.URL;
+////            fileName = Constants.FILENAME;
+////
+////            currentTime = System.currentTimeMillis();
+////            url = new URL(downloadUrl);
+////            startTime = System.currentTimeMillis();
+////
+////            Log.d("DownloadManager", "download url:" + url);
+////            Log.d("DownloadManager", "download file name:" + fileName);
+////
+////            uconn = url.openConnection();
+////            uconn.setReadTimeout(Constants.TENSECONDS);
+////            uconn.setConnectTimeout(Constants.TENSECONDS);
+////
+////            lastModified = uconn.getHeaderFieldDate("Last-Modified", currentTime);
+////
+////            Log.d("Donw", "last modified " + lastModified);
+////            Log.d("Donw", "Update " + file.lastModified());
+////
+////            Date data = new Date(lastModified);
+////            Log.d("Donw", "last modified " + data);
+////
+////            Date dataa = new Date(file.lastModified());
+////            Log.d("Donw", "last modified " + dataa);
+////
+////            InputStream is = uconn.getInputStream();
+////            bufferinstream = new BufferedInputStream(is);
+////
+//////            fileManager = new FileManager(context, file);
+////
+////
+//////            if ((file.lastModified() + Constants.TWOHOURS) < (lastModified)) {
+//////                fileManager.write(bufferinstream);
+//////                Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + "sec");
+//////
+//////            }
+////
+////            ByteArrayBuffer baf = new ByteArrayBuffer(5000);
+////            int current = 0;
+////            while((current = bufferinstream.read()) != -1){
+////                baf.append((byte) current);
+////            }
+////
+////            FileOutputStream fos = new FileOutputStream( file);
+////            fos.write(baf.toByteArray());
+////            fos.flush();
+////            fos.close();
+//            URL url = new URL(Constants.URL);
+//            File file = new File(Constants.FILENAME);
 //
-//            currentTime = System.currentTimeMillis();
-//            url = new URL(downloadUrl);
-//            startTime = System.currentTimeMillis();
-//
+//            long startTime = System.currentTimeMillis();
 //            Log.d("DownloadManager", "download url:" + url);
-//            Log.d("DownloadManager", "download file name:" + fileName);
+//            Log.d("DownloadManager", "download file name:" + Constants.FILENAME);
 //
-//            uconn = url.openConnection();
+//            URLConnection uconn = url.openConnection();
 //            uconn.setReadTimeout(Constants.TENSECONDS);
 //            uconn.setConnectTimeout(Constants.TENSECONDS);
 //
-//            lastModified = uconn.getHeaderFieldDate("Last-Modified", currentTime);
-//
-//            Log.d("Donw", "last modified " + lastModified);
-//            Log.d("Donw", "Update " + file.lastModified());
-//
-//            Date data = new Date(lastModified);
-//            Log.d("Donw", "last modified " + data);
-//
-//            Date dataa = new Date(file.lastModified());
-//            Log.d("Donw", "last modified " + dataa);
-//
 //            InputStream is = uconn.getInputStream();
-//            bufferinstream = new BufferedInputStream(is);
+//            BufferedInputStream bufferinstream = new BufferedInputStream(is);
 //
+////<<<<<<< HEAD
+//            ByteArrayBuffer baf = new ByteArrayBuffer(5000);
+//            int current = 0;
+//            while ((current = bufferinstream.read()) != -1) {
+//                baf.append((byte) current);
+//            }
+//
+//            FileOutputStream fos = new FileOutputStream(file);
+//            fos.write(baf.toByteArray());
+//            fos.flush();
+//            fos.close();
+////=======
 ////            fileManager = new FileManager(context, file);
-//
-//
+////
+////
+////            bufferinstream = new BufferedInputStream(is);
+////
 ////            if ((file.lastModified() + Constants.TWOHOURS) < (lastModified)) {
 ////                fileManager.write(bufferinstream);
 ////                Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + "sec");
 ////
 ////            }
-//
-//            ByteArrayBuffer baf = new ByteArrayBuffer(5000);
-//            int current = 0;
-//            while((current = bufferinstream.read()) != -1){
-//                baf.append((byte) current);
-//            }
-//
-//            FileOutputStream fos = new FileOutputStream( file);
-//            fos.write(baf.toByteArray());
-//            fos.flush();
-//            fos.close();
-            URL url = new URL(Constants.URL);
-            File file = new File(Constants.FILENAME);
+////
+////>>>>>>> a36cb3b6ed422cdc87822abc7e2395982f2a9674
+//            return "Cardápio Atualizado!";
+//        } catch (IOException ioe) {
+//            Log.d("DownloadManager", "Error: " + ioe);
+//            return "Erro de Conexão.";
+//        }
+//    }
+
+    private String downloadArquivoExcel() {  //this is the downloader method
+        try {
+            long currentTime = System.currentTimeMillis();
+            URL url = new URL(Constants.URL); //you can write here any link
+            File fileTest = new File(Constants.FILENAME);
 
             long startTime = System.currentTimeMillis();
-            Log.d("DownloadManager", "download url:" + url);
-            Log.d("DownloadManager", "download file name:" + Constants.FILENAME);
+            Log.d("ImageManager", "download begining");
+            Log.d("ImageManager", "download url:" + url);
+            Log.d("ImageManager", "downloaded file name:" + Constants.FILENAME);
+                        /* Open a connection to that URL. */
+            URLConnection ucon = url.openConnection();
+            ucon.setReadTimeout(Constants.TENSECONDS);
+            ucon.setConnectTimeout(Constants.TENSECONDS);
 
-            URLConnection uconn = url.openConnection();
-            uconn.setReadTimeout(Constants.TENSECONDS);
-            uconn.setConnectTimeout(Constants.TENSECONDS);
+            long lastModified = ucon.getHeaderFieldDate("Last-Modified", currentTime);
+            Log.d("Donw", "last modified " + lastModified);
+            Log.d("Donw", "Update " + fileTest.lastModified());
+            Log.d("Donw", "Diferença " + ((fileTest.lastModified() + Constants.TWOHOURS) - lastModified));
+                        /*
+                         * Define InputStreams to read from the URLConnection.
+                         */
 
-            InputStream is = uconn.getInputStream();
-            BufferedInputStream bufferinstream = new BufferedInputStream(is);
+            if ((fileTest.lastModified() + Constants.TWOHOURS)  < (lastModified)) {
+                Log.d("ImageManager", "Esta Baixando");
+                InputStream is = ucon.getInputStream();
+                BufferedInputStream bis = new BufferedInputStream(is);
+                        /*
+                         * Read bytes to the Buffer until there is nothing more to read(-1).
+                         */
 
-            ByteArrayBuffer baf = new ByteArrayBuffer(5000);
-            int current = 0;
-            while ((current = bufferinstream.read()) != -1) {
-                baf.append((byte) current);
+                ByteArrayBuffer baf = new ByteArrayBuffer(50);
+                int current = 0;
+                while ((current = bis.read()) != -1) {
+                    baf.append((byte) current);
+                }
+                        /* Convert the Bytes read to a String. */
+                FileOutputStream fos = new FileOutputStream(fileTest);
+                fos.write(baf.toByteArray());
+                fos.close();
+                Log.d("ImageManager", "download ready in"
+                        + ((System.currentTimeMillis() - startTime) / 1000)
+                        + " sec");
             }
 
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(baf.toByteArray());
-            fos.flush();
-            fos.close();
             return "Cardápio Atualizado!";
         } catch (IOException ioe) {
             Log.d("DownloadManager", "Error: " + ioe);
