@@ -52,22 +52,24 @@ android:layout_height="wrap_content">
                     <TextView
                         android:padding="3dip"
                         android:text="Almoço"
-                        android:textSize="8pt"
-
+                        android:textSize="18sp"
+                        android:textStyle="bold"
                         />
 
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/lunching"
-                    android:layout_marginBottom="125sp"
+                    android:layout_marginBottom="60sp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/lunch"
                         android:padding="3dip"
                         android:text="empty"
-                        android:textSize="20sp" />
+                        android:textSize="15sp"
+                        android:textColor="#000000"
+                        android:inputType="textMultiLine"/>
 
                 </TableRow>
 
@@ -83,19 +85,22 @@ android:layout_height="wrap_content">
                     <TextView
                         android:padding="3dip"
                         android:text="Jantar"
-                        android:textSize="8pt" />
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/dinning"
-                    android:layout_marginBottom="125sp"
+                    android:layout_marginBottom="60sp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/dinner"
                         android:padding="3dip"
                         android:text="empty"
-                        android:textSize="20sp" />
+                        android:textSize="15sp"
+                        android:textColor="#000000"
+                        android:inputType="textMultiLine"/>
                 </TableRow>
 
             </TableLayout>

@@ -68,7 +68,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     private void setupWeekSpinner() {
         ArrayAdapter<CharSequence> adapter =
-                ArrayAdapter.createFromResource(this, R.array.dias_semana_list, android.R.layout.simple_spinner_item);
+                ArrayAdapter.createFromResource(this, R.array.dias_semana_list, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner = (Spinner) findViewById(R.id.semana_spinner);
         spinner.setAdapter(adapter);

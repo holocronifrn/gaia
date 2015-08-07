@@ -25,11 +25,11 @@
 
   <string name="diassemanas">Dias da semana</string>
   <string-array name="dias_semana_list">
-    <item>Segunda</item>
-    <item>Terça</item>
-    <item>Quarta</item>
-    <item>Quinta</item>
-    <item>Sexta</item>
+    <item>Segunda-feira</item>
+    <item>Terça-feira</item>
+    <item>Quarta-feira</item>
+    <item>Quinta-feira</item>
+    <item>Sexta-feira</item>
   </string-array>
 
 </resources>

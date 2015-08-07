@@ -36,7 +36,7 @@ public class CsvFileManagerRead {
         String[] stringLunch = new String[5];
         String[] stringDinner = new String[5];
 
-        Reader reader = new FileReader(Constants.FILENAME); //
+        Reader reader = new FileReader(Constants.FILENAME);
 
         CSVReader<String[]> csvMeatReader = CSVReaderBuilder.newDefaultReader(reader);
 
@@ -62,7 +62,7 @@ public class CsvFileManagerRead {
             for (int i = 0; i < 5; i++){
 
                 if (day == i)
-                    return stringLunch[i];
+                    return " " + stringLunch[i];
 
             }
 
@@ -82,7 +82,7 @@ public class CsvFileManagerRead {
             for (int i = 0; i < 5; i++){
 
                 if (day == i)
-                    return stringDinner[i];
+                    return " " + stringDinner[i];
 
             }
         }
