@@ -38,6 +38,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private CharSequence mTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -130,7 +131,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             XlsxDownloadAsyncTask downloadBackground = new XlsxDownloadAsyncTask(MainActivity.this);
             downloadBackground.execute();
         } else {
-            Toast.makeText(MainActivity.this, "ERRO! Verifique Sua Conex�o!", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "ERRO! Verifique Sua Conexão!", Toast.LENGTH_LONG).show();
         }
     }
 

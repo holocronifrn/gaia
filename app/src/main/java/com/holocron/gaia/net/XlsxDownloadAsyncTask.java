@@ -59,7 +59,7 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         dialog = new ProgressDialog(context);
-        dialog.setMessage("Baixando Menu...");
+        dialog.setMessage("Atualizando cardápio...");
         dialog.setCancelable(false);//Impedir que o dialogo seja fechado!
         dialog.show();
     }

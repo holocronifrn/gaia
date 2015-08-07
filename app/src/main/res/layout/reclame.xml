@@ -103,6 +103,7 @@
                     android:text="* Caso seja constatado o uso indevido deste canal, a COAES tomará as medidas cabíveis."/>
             </LinearLayout>
 
+
         </LinearLayout>
     </ScrollView>
 

@@ -1,6 +1,8 @@
 package com.holocron.gaia.activity;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,6 +12,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.holocron.gaia.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class Reclame extends ActionBarActivity {
@@ -23,6 +29,7 @@ public class Reclame extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reclame);
+        showSimplePopUp();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -31,16 +38,26 @@ public class Reclame extends ActionBarActivity {
         botaoEnviar = (Button) findViewById(R.id.buttonSend);
         matricula = (EditText) findViewById(R.id.editTextMatricula);
 
+
     }
 
     public void onButtonClickSend(View v) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date data = new Date();
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        Date data_atual = cal.getTime();
+
+        String data_completa = dateFormat.format(data_atual);
         String emailmatricula = matricula.getText().toString();
         String emailnome = nomeCompleto.getText().toString();
         String emailTo = "saviorennan@gmail.com";
-        String emailSubject = "Reclamacao- Aplicativo Hoje é o quê?";
+        String emailSubject = data_completa+" -Reclamação"+ "/ "+ emailnome;
         String emailConteudoTeste= editTextEmailConteudo.getText().toString();
         String emailConteudo = editTextEmailConteudo.getText().toString()
-                + "\n\n" + "Nome do aluno: " + emailnome + "\n" + "Matrícula: " + emailmatricula + "\n";
+                + "\n\n"+ "Matrícula do aluno: " + emailmatricula + "\n";
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailTo});
@@ -52,10 +69,31 @@ public class Reclame extends ActionBarActivity {
             Toast.makeText(getApplication(), "Existe campos obrigatórios em branco!", Toast.LENGTH_SHORT).show();
 
         } else {
+
             emailIntent.setType("message/rfc822");
             startActivity(Intent.createChooser(emailIntent, "Selecione o seu provedor de email: "));
         }
 
     }
-}
+
+        private void showSimplePopUp() {
+
+            AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+            helpBuilder.setTitle("Atenção!");
+            helpBuilder.setMessage("A reclamação feita através deste canal não substitui o procedimento de protocolo de reclamações.");
+            helpBuilder.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing but close the dialog
+                        }
+                    });
+
+            // Remember, create doesn't show the dialog
+            AlertDialog helpDialog = helpBuilder.create();
+            helpDialog.show();
+        }
+
+    }
+
 
