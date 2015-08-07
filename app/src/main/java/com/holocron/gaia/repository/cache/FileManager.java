@@ -43,7 +43,7 @@ public class FileManager {
     }
 
     public File read() {
-        File file = new File(context.getCacheDir(), Constants.FILENAME);
+        File file = new File(Constants.FILENAME);
         return file;
     }
 
