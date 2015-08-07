@@ -32,8 +32,8 @@ public class CsvFileManagerRead {
 
     public String meatType(int day, boolean meatType) throws IOException {
 
-        String[] stringLunch = new String[5];
-        String[] stringDinner = new String[5];
+        String[] stringLunch = new String[6];
+        String[] stringDinner = new String[6];
 
         Reader reader = new FileReader(Constants.FILENAME);
 
@@ -50,15 +50,18 @@ public class CsvFileManagerRead {
 
             int aux = 0;
 
+            stringLunch[aux] = "";
+            stringDinner[aux] = "";
+
             for (String meat : lunchWeek) {
 
-                stringLunch[aux] = meat;
+                stringLunch[aux + 1] = meat;
 
                 aux++;
 
             }
 
-            for (int i = 0; i < 5; i++){
+            for (int i = 0; i < 6; i++){
 
                 if (day == i)
                     return stringLunch[i];
@@ -72,19 +75,19 @@ public class CsvFileManagerRead {
 
             for (String meat : dinnerWeek) {
 
-                stringDinner[aux] = meat;
+                stringDinner[aux + 1] = meat;
 
                 aux++;
 
             }
 
-            for (int i = 0; i < 5; i++){
+            for (int i = 0; i < 6; i++){
 
                 if (day == i)
                     return stringDinner[i];
 
             }
         }
-        return "Error: file not found!";
+        return "";
     }
 }

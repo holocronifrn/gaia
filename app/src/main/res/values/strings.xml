@@ -25,6 +25,7 @@
 
   <string name="diassemanas">Dias da semana</string>
   <string-array name="dias_semana_list">
+    <item>Selecione o dia: </item>
     <item>Segunda-feira</item>
     <item>Terça-feira</item>
     <item>Quarta-feira</item>

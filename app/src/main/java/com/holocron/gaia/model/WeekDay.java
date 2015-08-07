@@ -2,7 +2,7 @@ package com.holocron.gaia.model;
 
 public enum WeekDay {
 
-    MONDAY(0), TUESDAY(1), WEDNESDAY(2), THURSDAY(3), FRIDAY(4);
+    SELECT(0), MONDAY(1), TUESDAY(2), WEDNESDAY(3), THURSDAY(4), FRIDAY(5);
 
     int value;
 

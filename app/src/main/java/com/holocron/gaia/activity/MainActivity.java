@@ -34,6 +34,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private XlsxDownloadAsyncTask update;
     private TextView textLunch;
     private TextView textDinner;
+    private boolean contador = true;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -55,41 +56,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         setupNavigationDrawer();
         setupWeekSpinner();
-
-    }
-
-    protected void onStart(){
-        super.onStart();
-
-        Log.d("Activity", "onStart");
-
-    }
-
-    protected void onDestroy(){
-        super.onDestroy();
-
-        Log.d("Activity", "onDestroy");
-
-    }
-
-    protected void onStop(){
-        super.onStop();
-
-        Log.d("Activity", "onStop");
-
-    }
-
-    protected void onResume(){
-        super.onResume();
-
-        Log.d("Activity", "onResume");
-
-    }
-
-    protected void onPause(){
-        super.onPause();
-
-        Log.d("Activity", "onPause");
 
     }
 
