@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Hoje é o quê?</string>
+  <string name="app_name">Cardápio App</string>
 
   <string name="action_settings">Settings</string>
 
@@ -9,7 +9,7 @@
   <string name="quinta">quinta</string>
   <string name="sexta">sexta</string>
 
-  <string name="inicio">Hoje é o quê?</string>
+  <string name="inicio">Cardápio App</string>
   <string name="reclame">Reclame</string>
   <string name="atualizar">Atualizar</string>
   <string name="sobre">Sobre</string>
@@ -20,7 +20,7 @@
 
   <string name="action_example">Ação</string>
     <string name="sobree">"Bem vindo ao cardápio das refeições diárias do IFRN (Campus Pau dos Ferros).\n
-   \n- Aplicativo desenvolvido pelo grupo de estudos do laboratório LASINF.\n - Desenvolvedores: Herlan Assis, Jhoanes Freitas e Sávio Rennan. (Alunos do curso superior de Tecnologia em Análise e Desenvolvimento de Sistemas- TADS).\n\n- Essa é uma versão GAIA (1.0).\n
+   \n- Aplicativo desenvolvido pelo grupo de estudos do laboratório LASINF.\n - Desenvolvedores: Herlan Assis, Jhoanes Freitas e Sávio Rennan. (Alunos do curso superior de Tecnologia em Análise e Desenvolvimento de Sistemas- TADS).\n\n- Esta é uma versão (1.0).\n
     </string>
 
   <string name="diassemanas">Dias da semana</string>

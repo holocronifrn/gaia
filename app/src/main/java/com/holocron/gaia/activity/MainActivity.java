@@ -38,6 +38,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private CharSequence mTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

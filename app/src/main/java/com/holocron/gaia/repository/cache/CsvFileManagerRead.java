@@ -36,7 +36,7 @@ public class CsvFileManagerRead {
         String[] stringLunch = new String[5];
         String[] stringDinner = new String[5];
 
-        Reader reader = new FileReader("/storage/sdcard0/Cardápio - cantina IFRN - Página1(1).csv"); //
+        Reader reader = new FileReader(Constants.FILENAME); //
 
         CSVReader<String[]> csvMeatReader = CSVReaderBuilder.newDefaultReader(reader);
 
