@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ControlDay {
 
-    public String Data() throws IOException {
+    public String data() throws IOException {
 
         Reader reader = new FileReader(Constants.FILENAME);
 
