@@ -26,8 +26,8 @@ public class ControlDay {
 
         List<String> weekDay = Arrays.asList(card.get(0)[0]);
 
-        String returnData[] = weekDay.get(0).split(" ,");
-
+        String returnData[] = weekDay.get(0).split(" ");
+        String returnData2[] = returnData[7].split(",");
 
         //A classe Date so recebe o nome do mes em ingles e as inicias, caso contrário tem que se usar numeros
         if(returnData[5].equals(Constants.janeiro)){
@@ -56,6 +56,6 @@ public class ControlDay {
             returnData[5] = "12";
         }
 
-        return returnData[1] + "/" + returnData[5] + "/" + returnData[7];
+        return returnData[1] + "/" + returnData[5] + "/" + returnData2[0];
     }
 }
