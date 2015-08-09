@@ -26,7 +26,7 @@ public class ControlDay {
 
         List<String> weekDay = Arrays.asList(card.get(0)[0]);
 
-        String returnData[] = weekDay.get(0).split(" ");
+        String returnData[] = weekDay.get(0).split("[ ][,]");
 
         return returnData[1] + "/" + returnData[5] + "/" + returnData[7];
     }
