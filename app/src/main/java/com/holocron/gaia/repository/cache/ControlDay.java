@@ -24,11 +24,10 @@ public class ControlDay {
 
         List<String[]> card = csvMeatReader.readAll();
 
-        List<String> weekDay = Arrays.asList(card.get(1)[0]);
+        List<String> weekDay = Arrays.asList(card.get(0)[0]);
 
-        for (String retorn: weekDay)
-            return retorn;
+        String returnData[] = weekDay.get(0).split(" ");
 
-        return null;
+        return returnData[1] + "/" + returnData[5] + "/" + returnData[7];
     }
 }
