@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.holocron.gaia.Constants;
+import com.holocron.gaia.repository.cache.ControlDay;
 
 import org.apache.http.util.ByteArrayBuffer;
 
@@ -16,6 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -54,33 +58,51 @@ public class FirstUpdade extends AsyncTask<Void, Void, String> {
         try {
             long currentTime = System.currentTimeMillis();
             URL url = new URL(Constants.URL); //you can write here any link
-            File fileTest = new File(Constants.FILENAME);
+            File fileCard = new File(Constants.FILENAME);
 
             long startTime = System.currentTimeMillis();
-            Log.d("ImageManager", "download begining");
-            Log.d("ImageManager", "download url:" + url);
-            Log.d("ImageManager", "downloaded file name:" + Constants.FILENAME);
+            Log.d(Constants.TAG, "download begining");
+            Log.d(Constants.TAG, "download url: " + url);
+            Log.d(Constants.TAG, "downloaded file name: " + Constants.FILENAME);
                         /* Open a connection to that URL. */
             URLConnection ucon = url.openConnection();
             ucon.setReadTimeout(Constants.TIMEOUT_CONNECTION);
             ucon.setConnectTimeout(Constants.TIMEOUT_SOCKET);
-
-            //long lastModified = ucon.getHeaderFieldDate("Last-Modified", currentTime);
-            //Log.d("Donw", "last modified " + lastModified);
-            Log.d("Donw", "Update " + fileTest.lastModified());
-            //Log.d("Donw", "Diferença " + ((fileTest.lastModified() + Constants.TWOHOURS) - lastModified));
                         /*
                          * Define InputStreams to read from the URLConnection.
                          */
 
-            Date date = new Date(currentTime);
-            Date datee = new Date(fileTest.lastModified() + Constants.TWOHOURS);
-            Log.d("ImageManager", "Tempo do android" + datee);
+            Date dateFile = new Date();
+            Date newDateFile;
+            Date newDate = new Date(currentTime);
+            //Log.d("ImageManager", "Tempo do android" + datee);
 
-            Log.d("ImageManager", "Tempo do android" + date);
+            //AJUSTANDO DATA
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            ControlDay controlDay = new ControlDay();
+            String dateInString = controlDay.data();
 
-            if ((fileTest.lastModified() + Constants.TWOHOURS) <= currentTime) {
-                Log.d("ImageManager", "Esta Baixando");
+            try {
+                Date dateDoArquivo = formatter.parse(dateInString);
+                dateFile = dateDoArquivo;
+                Log.d(Constants.TAG, "Data do arquivo " + dateDoArquivo);
+                Log.d(Constants.TAG, "Data do arquivo formatado " + (formatter.format(dateDoArquivo)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            //Incrementando 7 dias na data com base na data anterior
+            Calendar c = Calendar.getInstance();
+            c.setTime(dateFile);
+            c.add(Calendar.DATE, 7);
+            newDateFile = c.getTime();
+            //END
+
+            Log.d(Constants.TAG, "Data do Sistema: " + newDate);
+            Log.d(Constants.TAG, "Data do arquivo original: " + dateFile);
+            Log.d(Constants.TAG, "Data do novo arquivo Modificado : " + newDateFile);
+            //Caso a data do arquivo seja inferior ou igual ele baixa
+            if (newDateFile.before(newDate) || newDateFile.equals(newDate)) {
+                Log.d(Constants.TAG, "Esta Baixando = true");
 
                 InputStream is = ucon.getInputStream();
                 BufferedInputStream bis = new BufferedInputStream(is);
@@ -93,10 +115,10 @@ public class FirstUpdade extends AsyncTask<Void, Void, String> {
                     baf.append((byte) current);
                 }
                         /* Convert the Bytes read to a String. */
-                FileOutputStream fos = new FileOutputStream(fileTest);
+                FileOutputStream fos = new FileOutputStream(fileCard);
                 fos.write(baf.toByteArray());
                 fos.close();
-                Log.d("ImageManager", "download ready in"
+                Log.d(Constants.TAG, "download ready in "
                         + ((System.currentTimeMillis() - startTime) / 1000)
                         + " sec");
             }
