@@ -26,7 +26,7 @@ public class ControlDay {
 
         List<String> weekDay = Arrays.asList(card.get(0)[0]);
 
-        String returnData[] = weekDay.get(0).split("[ ][,]");
+        String returnData[] = weekDay.get(0).split(" ,");
 
 
         //A classe Date so recebe o nome do mes em ingles e as inicias, caso contrário tem que se usar numeros
