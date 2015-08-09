@@ -184,30 +184,40 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
                          * Define InputStreams to read from the URLConnection.
                          */
 
-            Date dateFile = new Date();
-            Date newDateFile;
+            Date dateFile = new Date(currentTime);
+            Date newDateFile = new Date(currentTime);
             Date newDate = new Date(currentTime);
             //Log.d("ImageManager", "Tempo do android" + datee);
 
-            //AJUSTANDO DATA
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            ControlDay controlDay = new ControlDay();
-            String dateInString = controlDay.data();
-
-            try {
-                Date dateDoArquivo = formatter.parse(dateInString);
-                dateFile = dateDoArquivo;
-                Log.d(Constants.TAG, "Data do arquivo " + dateDoArquivo);
-                Log.d(Constants.TAG, "Data do arquivo formatado " + (formatter.format(dateDoArquivo)));
-            } catch (ParseException e) {
-                e.printStackTrace();
+            if(fileCard.exists()){
+                Log.d(Constants.TAG, "Existe");
+            }else{
+                Log.d(Constants.TAG, "Não Existe");
             }
-            //Incrementando 7 dias na data com base na data anterior
-            Calendar c = Calendar.getInstance();
-            c.setTime(dateFile);
-            c.add(Calendar.DATE,7);
-            newDateFile = c.getTime();
-            //END
+
+            if(fileCard.exists()) {//Caso o arquivo não existe será atribuido a ele data ficticias para que possa ser realizado o dowload
+                //AJUSTANDO DATA
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                ControlDay controlDay = new ControlDay();
+
+                String dateInString = controlDay.data();
+
+                try {
+                    Date dateDoArquivo = formatter.parse(dateInString);
+                    dateFile = dateDoArquivo;
+                    Log.d(Constants.TAG, "Data do arquivo " + dateDoArquivo);
+                    Log.d(Constants.TAG, "Data do arquivo formatado " + (formatter.format(dateDoArquivo)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Log.d(Constants.TAG, "Erro na conversão ");
+                }
+                //Incrementando 7 dias na data com base na data anterior
+                Calendar c = Calendar.getInstance();
+                c.setTime(dateFile);
+                c.add(Calendar.DATE, 7);
+                newDateFile = c.getTime();
+                //END
+            }
 
             Log.d(Constants.TAG, "Data do Sistema: " + newDate);
             Log.d(Constants.TAG, "Data do arquivo original: " + dateFile);

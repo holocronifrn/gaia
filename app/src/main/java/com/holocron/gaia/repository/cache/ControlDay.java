@@ -8,7 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -59,3 +61,11 @@ public class ControlDay {
         return returnData[1] + "/" + returnData[5] + "/" + returnData2[0];
     }
 }
+
+//long currentTime = System.currentTimeMillis();
+//Date date = new Date(currentTime);
+//
+//SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//Log.d(Constants.TAG,"Data do arquivo "+formatter.format(date));
+//        String dateInString=formatter.format(date);
+//        return dateInString;
