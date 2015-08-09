@@ -9,4 +9,16 @@ public final class Constants {
     public static final int TWOHOURS = 7200000;
     public static final int TIMEOUT_CONNECTION = 5000;
     public static final int TIMEOUT_SOCKET = 5000;
+    public static final String janeiro = "JANEIRO";
+    public static final String fevereiro = "FEVEREIRO";
+    public static final String marco = "MARÇO";
+    public static final String abril = "ABRIL";
+    public static final String maio = "MAIO";
+    public static final String junho = "JUNHO";
+    public static final String julho = "JULHO";
+    public static final String agosto = "AGOSTO";
+    public static final String setembro = "SETEMBRO";
+    public static final String outubro = "OUTUBRO";
+    public static final String novembro = "NOVEMBRO";
+    public static final String dezembro = "DEZEMBRO";
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.holocron.gaia.Constants;
+import com.holocron.gaia.repository.cache.ControlDay;
 import com.holocron.gaia.repository.cache.CsvFileManagerRead;
 import com.holocron.gaia.repository.cache.FileManager;
 
@@ -188,6 +189,11 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
             Date date = new Date(currentTime);
             Date datee = new Date(fileTest.lastModified() + Constants.TWOHOURS);
             Log.d("ImageManager", "Tempo do android" + datee);
+
+            ControlDay controlDay = new ControlDay();
+
+            Date dataTeste = new Date(controlDay.data());
+            Log.d("TesteFinal", "Tempo do android" + dataTeste);
 
             Log.d("ImageManager", "Tempo do android" + date);
 
