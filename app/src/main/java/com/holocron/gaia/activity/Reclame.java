@@ -64,10 +64,10 @@ public class Reclame extends ActionBarActivity {
         String emailmatricula = matricula.getText().toString();
         String emailnome = nomeCompleto.getText().toString();
         String emailTo = "coaes.pf@ifrn.edu.br";
-        String emailSubject = data_completa+" -Reclamação"+ "- "+ emailnome;
-        String emailConteudoTeste= editTextEmailConteudo.getText().toString();
+        String emailSubject = data_completa + " -Reclamação" + "- " + emailnome;
+        String emailConteudoTeste = editTextEmailConteudo.getText().toString();
         String emailConteudo = editTextEmailConteudo.getText().toString()
-                + "\n\n"+ "Matrícula do aluno: " + emailmatricula + "\n";
+                + "\n\n" + "Matrícula do aluno: " + emailmatricula + "\n";
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailTo});
@@ -86,24 +86,24 @@ public class Reclame extends ActionBarActivity {
 
     }
 
-        private void showSimplePopUp() {
+    private void showSimplePopUp() {
 
-            AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-            helpBuilder.setTitle("Atenção!");
-            helpBuilder.setMessage("A reclamação feita através deste canal não substitui o procedimento de protocolo de reclamações.");
-            helpBuilder.setPositiveButton("Ok",
-                    new DialogInterface.OnClickListener() {
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Atenção!");
+        helpBuilder.setMessage("A reclamação feita através deste canal não substitui o procedimento de protocolo de reclamações.");
+        helpBuilder.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
 
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Do nothing but close the dialog
-                        }
-                    });
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+                    }
+                });
 
-            // Remember, create doesn't show the dialog
-            AlertDialog helpDialog = helpBuilder.create();
-            helpDialog.show();
-        }
-
+        // Remember, create doesn't show the dialog
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
     }
+
+}
 
 

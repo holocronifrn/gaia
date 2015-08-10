@@ -22,10 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by herlan on 07/08/15.
- */
-
 public class FirstUpdade extends AsyncTask<Void, Void, String> {
     public FirstUpdade(Context context) {
         this.context = context;

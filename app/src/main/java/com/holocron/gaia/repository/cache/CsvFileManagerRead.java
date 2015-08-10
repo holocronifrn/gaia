@@ -5,21 +5,13 @@ import android.content.Context;
 import com.googlecode.jcsv.reader.CSVReader;
 import com.googlecode.jcsv.reader.internal.CSVReaderBuilder;
 import com.holocron.gaia.Constants;
-import com.holocron.gaia.activity.MainActivity;
-import com.holocron.gaia.net.XlsxDownloadAsyncTask;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by jhoanes on 05/08/15.
- */
 public class CsvFileManagerRead {
 
     private Context context;
@@ -45,7 +37,6 @@ public class CsvFileManagerRead {
 
         List<String> dinnerWeek = Arrays.asList(card.get(6)[0].split(","));
 
-        //Fazer nova classe para retornar apenas a string;
         if (meatType) {
 
             int aux = 0;

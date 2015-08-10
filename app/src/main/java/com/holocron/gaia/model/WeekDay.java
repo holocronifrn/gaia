@@ -22,7 +22,4 @@ public enum WeekDay {
         }
         return null;
     }
-
-
-
 }
