@@ -170,6 +170,30 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
         try {
             long currentTime = System.currentTimeMillis();
             URL url = new URL(Constants.URL); //you can write here any link
+
+            File dir = new File(Constants.DIR);
+
+            if(!dir.exists()){
+                if(dir.mkdir()){
+                    Log.d("TAG","Diretório criado");
+                }else{
+                    Log.d("TAG", "Diretório não criado");
+                }
+            }else {
+                Log.d("TAG", "Diretório não criado, Já Existente");
+            }
+//
+//            try{
+//                File file = new File(dir, "file.txt");
+//                if( file.createNewFile() ){
+//                    System.out.println("Arquivo criado");
+//                }else{
+//                    System.out.println("Arquivo não criado");
+//                }
+//            }catch(IOException ex){
+//                ex.printStackTrace();
+//            }
+
             File fileCard = new File(Constants.FILENAME);
 
             long startTime = System.currentTimeMillis();
