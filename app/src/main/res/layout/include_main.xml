@@ -54,7 +54,7 @@
 
                     <TableRow
                         android:id="@+id/lunching"
-                        android:layout_marginBottom="60sp"
+                        android:layout_marginBottom="10sp"
                         android:orientation="vertical">
 
                         <TextView
@@ -85,7 +85,7 @@
 
                     <TableRow
                         android:id="@+id/dinning"
-                        android:layout_marginBottom="60sp"
+                        android:layout_marginBottom="0sp"
                         android:orientation="vertical">
 
                         <TextView
