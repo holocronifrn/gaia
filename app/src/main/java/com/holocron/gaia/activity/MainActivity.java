@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("Activity", "onCreate");
+        //Log.d("Activity", "onCreate");
 
         textLunch = (TextView) findViewById(R.id.lunch);
         textDinner = (TextView) findViewById(R.id.dinner);

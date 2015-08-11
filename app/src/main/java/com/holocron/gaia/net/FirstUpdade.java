@@ -1,7 +1,6 @@
 package com.holocron.gaia.net;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -60,21 +59,19 @@ public class FirstUpdade extends AsyncTask<Void, Void, String> {
 
             File dir = new File(Constants.DIR);
             if(!dir.exists()){
-                if(dir.mkdir()){
-                    Log.d("TAG","Diretório criado");
-                }else{
-                    Log.d("TAG", "Diretório não criado");
-                }
-            }else {
-                Log.d("TAG", "Diretório não criado, Já Existente");
-            }
+                dir.mkdir();
+                    //Log.d("TAG","Diretório criado");
+
+            }//else {
+               // Log.d("TAG", "Diretório não criado, Já Existente");
+            //}
 
             File fileCard = new File(Constants.FILENAME);
 
             long startTime = System.currentTimeMillis();
-            Log.d(Constants.TAG, "download begining");
-            Log.d(Constants.TAG, "download url: " + url);
-            Log.d(Constants.TAG, "downloaded file name: " + Constants.FILENAME);
+            //Log.d(Constants.TAG, "download begining");
+            //Log.d(Constants.TAG, "download url: " + url);
+            //Log.d(Constants.TAG, "downloaded file name: " + Constants.FILENAME);
                         /* Open a connection to that URL. */
             URLConnection ucon = url.openConnection();
             ucon.setReadTimeout(Constants.TIMEOUT_CONNECTION);
@@ -88,11 +85,11 @@ public class FirstUpdade extends AsyncTask<Void, Void, String> {
             Date newDate = new Date(currentTime);
             //Log.d("ImageManager", "Tempo do android" + datee);
 
-            if(fileCard.exists()){
+            /*if(fileCard.exists()){
                 Log.d(Constants.TAG, "Existe");
             }else{
                 Log.d(Constants.TAG, "Não Existe");
-            }
+            }*/
 
             if(fileCard.exists()) {//Caso o arquivo não existe será atribuido a ele data ficticias para que possa ser realizado o dowload
                 //AJUSTANDO DATA
@@ -104,11 +101,11 @@ public class FirstUpdade extends AsyncTask<Void, Void, String> {
                 try {
                     Date dateDoArquivo = formatter.parse(dateInString);
                     dateFile = dateDoArquivo;
-                    Log.d(Constants.TAG, "Data do arquivo " + dateDoArquivo);
-                    Log.d(Constants.TAG, "Data do arquivo formatado " + (formatter.format(dateDoArquivo)));
+                    //Log.d(Constants.TAG, "Data do arquivo " + dateDoArquivo);
+                    //Log.d(Constants.TAG, "Data do arquivo formatado " + (formatter.format(dateDoArquivo)));
                 } catch (ParseException e) {
                     e.printStackTrace();
-                    Log.d(Constants.TAG, "Erro na conversão ");
+                    //Log.d(Constants.TAG, "Erro na conversão ");
                 }
                 //Incrementando 7 dias na data com base na data anterior
                 Calendar c = Calendar.getInstance();
@@ -118,12 +115,12 @@ public class FirstUpdade extends AsyncTask<Void, Void, String> {
                 //END
             }
 
-            Log.d(Constants.TAG, "Data do Sistema: " + newDate);
-            Log.d(Constants.TAG, "Data do arquivo original: " + dateFile);
-            Log.d(Constants.TAG, "Data do novo arquivo Modificado : " + newDateFile);
+            //Log.d(Constants.TAG, "Data do Sistema: " + newDate);
+            //Log.d(Constants.TAG, "Data do arquivo original: " + dateFile);
+            //Log.d(Constants.TAG, "Data do novo arquivo Modificado : " + newDateFile);
             //Caso a data do arquivo seja inferior ou igual ele baixa
             if (newDateFile.before(newDate) || newDateFile.equals(newDate)) {
-                Log.d(Constants.TAG, "Esta Baixando = true");
+                //Log.d(Constants.TAG, "Esta Baixando = true");
 
                 InputStream is = ucon.getInputStream();
                 BufferedInputStream bis = new BufferedInputStream(is);
@@ -139,14 +136,14 @@ public class FirstUpdade extends AsyncTask<Void, Void, String> {
                 FileOutputStream fos = new FileOutputStream(fileCard);
                 fos.write(baf.toByteArray());
                 fos.close();
-                Log.d(Constants.TAG, "download ready in "
+                /*Log.d(Constants.TAG, "download ready in "
                         + ((System.currentTimeMillis() - startTime) / 1000)
-                        + " sec");
+                        + " sec");*/
             }
 
             return null;
         } catch (IOException ioe) {
-            Log.d("DownloadManager", "Error: " + ioe);
+            //Log.d("DownloadManager", "Error: " + ioe);
             return null;
         }
     }

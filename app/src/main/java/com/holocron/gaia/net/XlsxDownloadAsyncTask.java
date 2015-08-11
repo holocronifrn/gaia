@@ -68,21 +68,17 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
             File dir = new File(Constants.DIR);
 
             if (!dir.exists()) {
-                if (dir.mkdir()) {
-                    Log.d("TAG", "Diretório criado");
-                } else {
-                    Log.d("TAG", "Diretório não criado");
-                }
-            } else {
-                Log.d("TAG", "Diretório não criado, Já Existente");
+                   dir.mkdir();
+                    //Log.d("TAG", "Diretório criado");
+
             }
 
             File fileCard = new File(Constants.FILENAME);
 
             long startTime = System.currentTimeMillis();
-            Log.d(Constants.TAG, "download begining");
-            Log.d(Constants.TAG, "download url: " + url);
-            Log.d(Constants.TAG, "downloaded file name: " + Constants.FILENAME);
+            //Log.d(Constants.TAG, "download begining");
+            //Log.d(Constants.TAG, "download url: " + url);
+            //Log.d(Constants.TAG, "downloaded file name: " + Constants.FILENAME);
                         /* Open a connection to that URL. */
             URLConnection ucon = url.openConnection();
             ucon.setReadTimeout(Constants.TIMEOUT_CONNECTION);
@@ -91,18 +87,18 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
              * Define InputStreams to read from the URLConnection.
              */
 
-            if (fileCard.exists()) {
+            /*if (fileCard.exists()) {
                 Log.d(Constants.TAG, "Existe");
             } else {
                 Log.d(Constants.TAG, "Não Existe");
-            }
+            }*/
 
 
 //            Log.d(Constants.TAG, "Data do Sistema: " + newDate);
 //            Log.d(Constants.TAG, "Data do arquivo original: " + dateFile);
 //            Log.d(Constants.TAG, "Data do novo arquivo Modificado : " + newDateFile);
 
-            Log.d(Constants.TAG, "Esta Baixando = true");
+            //Log.d(Constants.TAG, "Esta Baixando = true");
             InputStream is = ucon.getInputStream();
             BufferedInputStream bis = new BufferedInputStream(is);
                 /*
@@ -119,14 +115,14 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
             FileOutputStream fos = new FileOutputStream(fileCard);
             fos.write(baf.toByteArray());
             fos.close();
-            Log.d(Constants.TAG, "download ready in "
+            /*Log.d(Constants.TAG, "download ready in "
                     + ((System.currentTimeMillis() - startTime) / 1000)
-                    + " sec");
+                    + " sec");*/
 
 
             return "Cardápio Atualizado!";
         } catch (IOException ioe) {
-            Log.d("DownloadManager", "Error: " + ioe);
+            //Log.d("DownloadManager", "Error: " + ioe);
             return "Erro de Conexão.";
         }
     }
