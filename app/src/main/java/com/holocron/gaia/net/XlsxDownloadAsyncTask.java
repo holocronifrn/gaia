@@ -7,6 +7,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.holocron.gaia.Constants;
+import com.holocron.gaia.activity.MainActivity;
+import com.holocron.gaia.model.WeekDay;
 import com.holocron.gaia.repository.cache.ControlDay;
 
 import org.apache.http.util.ByteArrayBuffer;
@@ -26,21 +28,21 @@ import java.util.Date;
 
 public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
 
-    private Context context;
+    private MainActivity mainActivity;
     private ProgressDialog dialog;
 
-    public XlsxDownloadAsyncTask(Context context) {
-        this.context = context;
+    public XlsxDownloadAsyncTask(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
 
     public Context getContext() {
-        return context;
+        return mainActivity;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog = new ProgressDialog(context);
+        dialog = new ProgressDialog(mainActivity);
         dialog.setMessage("Atualizando cardápio...");
         dialog.setCancelable(false);//Impedir que o dialogo seja fechado!
         dialog.show();
@@ -54,7 +56,8 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String msg) {
         dialog.dismiss();
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+        mainActivity.setupTextWeek(WeekDay.MONDAY);
+        Toast.makeText(mainActivity, msg, Toast.LENGTH_LONG).show();
     }
 
     private String downloadArquivoExcel() {  //this is the downloader method
@@ -64,13 +67,13 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
 
             File dir = new File(Constants.DIR);
 
-            if(!dir.exists()){
-                if(dir.mkdir()){
-                    Log.d("TAG","Diretório criado");
-                }else{
+            if (!dir.exists()) {
+                if (dir.mkdir()) {
+                    Log.d("TAG", "Diretório criado");
+                } else {
                     Log.d("TAG", "Diretório não criado");
                 }
-            }else {
+            } else {
                 Log.d("TAG", "Diretório não criado, Já Existente");
             }
 
@@ -88,70 +91,38 @@ public class XlsxDownloadAsyncTask extends AsyncTask<Void, Void, String> {
              * Define InputStreams to read from the URLConnection.
              */
 
-            Date dateFile = new Date(currentTime);
-            Date newDateFile = new Date(currentTime);
-            Date newDate = new Date(currentTime);
-
-            if(fileCard.exists()){
+            if (fileCard.exists()) {
                 Log.d(Constants.TAG, "Existe");
-            }else{
+            } else {
                 Log.d(Constants.TAG, "Não Existe");
             }
 
-            if(fileCard.exists()) {
-                //Caso o arquivo não existe será atribuido a ele data ficticias para que possa ser realizado o dowload
-                //AJUSTANDO DATA
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                ControlDay controlDay = new ControlDay();
 
-                String dateInString = controlDay.data();
+//            Log.d(Constants.TAG, "Data do Sistema: " + newDate);
+//            Log.d(Constants.TAG, "Data do arquivo original: " + dateFile);
+//            Log.d(Constants.TAG, "Data do novo arquivo Modificado : " + newDateFile);
 
-                try {
-                    Date dateDoArquivo = formatter.parse(dateInString);
-                    dateFile = dateDoArquivo;
-                    Log.d(Constants.TAG, "Data do arquivo " + dateDoArquivo);
-                    Log.d(Constants.TAG, "Data do arquivo formatado " + (formatter.format(dateDoArquivo)));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    Log.d(Constants.TAG, "Erro na conversão ");
-                }
-                //Incrementando 7 dias na data com base na data anterior
-                Calendar c = Calendar.getInstance();
-                c.setTime(dateFile);
-                c.add(Calendar.DATE, 7);
-                newDateFile = c.getTime();
-                //END
-            }
-
-            Log.d(Constants.TAG, "Data do Sistema: " + newDate);
-            Log.d(Constants.TAG, "Data do arquivo original: " + dateFile);
-            Log.d(Constants.TAG, "Data do novo arquivo Modificado : " + newDateFile);
-
-            //Caso a data do arquivo seja inferior ou igual ele baixa
-            if (newDateFile.before(newDate) || newDateFile.equals(newDate)) {
-                Log.d(Constants.TAG, "Esta Baixando = true");
-
-                InputStream is = ucon.getInputStream();
-                BufferedInputStream bis = new BufferedInputStream(is);
-
+            Log.d(Constants.TAG, "Esta Baixando = true");
+            InputStream is = ucon.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is);
                 /*
                  * Read bytes to the Buffer until there is nothing more to read(-1).
                 */
 
-                ByteArrayBuffer baf = new ByteArrayBuffer(50);
-                int current = 0;
-                while ((current = bis.read()) != -1) {
-                    baf.append((byte) current);
-                }
+            ByteArrayBuffer baf = new ByteArrayBuffer(50);
+            int current = 0;
+            while ((current = bis.read()) != -1) {
+                baf.append((byte) current);
+            }
 
                 /* Convert the Bytes read to a String. */
-                FileOutputStream fos = new FileOutputStream(fileCard);
-                fos.write(baf.toByteArray());
-                fos.close();
-                Log.d(Constants.TAG, "download ready in "
-                        + ((System.currentTimeMillis() - startTime) / 1000)
-                        + " sec");
-            }
+            FileOutputStream fos = new FileOutputStream(fileCard);
+            fos.write(baf.toByteArray());
+            fos.close();
+            Log.d(Constants.TAG, "download ready in "
+                    + ((System.currentTimeMillis() - startTime) / 1000)
+                    + " sec");
+
 
             return "Cardápio Atualizado!";
         } catch (IOException ioe) {

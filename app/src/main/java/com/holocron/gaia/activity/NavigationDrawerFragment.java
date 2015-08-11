@@ -249,7 +249,7 @@ public class NavigationDrawerFragment extends Fragment {
             //BOTÃO ATUALIZAR CANTO!
             if (NetworkStatus.isConnected(getActivity())) {//verifica se existe conexão
                 //Referenciar o objeto novamente evida o erro de execução ao clicar várias vezes nele!
-                XlsxDownloadAsyncTask downloadBackground = new XlsxDownloadAsyncTask(this.getActivity());
+                XlsxDownloadAsyncTask downloadBackground = new XlsxDownloadAsyncTask((MainActivity)this.getActivity());
                 downloadBackground.execute();
             } else {
                 Toast.makeText(this.getActivity(), "ERRO! Verifique Sua Conexão!", Toast.LENGTH_LONG).show();

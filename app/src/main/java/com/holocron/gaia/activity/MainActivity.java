@@ -72,34 +72,30 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 WeekDay day = WeekDay.getDay(position);
 
-                String meat = "";
-
-                CsvFileManagerRead csvFileManagerReadLunch = new CsvFileManagerRead(MainActivity.this);
-
-                try {
-                    meat = csvFileManagerReadLunch.meatType(day.getValue(), true);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                textLunch.setText(meat);
-
-                CsvFileManagerRead csvFileManagerReadDinner = new CsvFileManagerRead();
-
-                try {
-                    meat = csvFileManagerReadDinner.meatType(day.getValue(), false);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                textDinner.setText(meat);
-
+                setupTextWeek(day);
             }
 
             public void onNothingSelected(AdapterView<?> arg0) {
 
             }
         });
+    }
+
+    public void setupTextWeek(WeekDay weekDay) {
+        String meatLunch = "";
+        String meatDinner = "";
+
+        CsvFileManagerRead csvFileManagerReadLunch = new CsvFileManagerRead(MainActivity.this);
+
+        try {
+            meatLunch = csvFileManagerReadLunch.meatType(weekDay, true);
+            meatDinner = csvFileManagerReadLunch.meatType(weekDay, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        textLunch.setText(meatLunch);
+        textDinner.setText(meatDinner);
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.googlecode.jcsv.reader.CSVReader;
 import com.googlecode.jcsv.reader.internal.CSVReaderBuilder;
 import com.holocron.gaia.Constants;
+import com.holocron.gaia.model.WeekDay;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,10 +23,8 @@ public class CsvFileManagerRead {
 
     public CsvFileManagerRead(){}
 
-    public String meatType(int day, boolean meatType) throws IOException {
+    public String meatType(WeekDay day, boolean meatType) throws IOException {
 
-        String[] stringLunch = new String[6];
-        String[] stringDinner = new String[6];
 
         Reader reader = new FileReader(Constants.FILENAME);
 
@@ -38,47 +37,9 @@ public class CsvFileManagerRead {
         List<String> dinnerWeek = Arrays.asList(card.get(6)[0].split(","));
 
         if (meatType) {
-
-            int aux = 0;
-
-            stringLunch[aux] = "";
-            stringDinner[aux] = "";
-
-            for (String meat : lunchWeek) {
-
-                stringLunch[aux + 1] = meat;
-
-                aux++;
-
-            }
-
-            for (int i = 0; i < 6; i++){
-
-                if (day == i)
-                    return stringLunch[i];
-
-            }
-
-
+            return lunchWeek.get(day.getValue());
         } else {
-
-            int aux = 0;
-
-            for (String meat : dinnerWeek) {
-
-                stringDinner[aux + 1] = meat;
-
-                aux++;
-
-            }
-
-            for (int i = 0; i < 6; i++){
-
-                if (day == i)
-                    return stringDinner[i];
-
-            }
+            return dinnerWeek.get(day.getValue());
         }
-        return "";
     }
 }

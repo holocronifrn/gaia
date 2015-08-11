@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.holocron.gaia.Constants;
+import com.holocron.gaia.activity.MainActivity;
+import com.holocron.gaia.model.WeekDay;
 import com.holocron.gaia.repository.cache.ControlDay;
 
 import org.apache.http.util.ByteArrayBuffer;
@@ -23,11 +25,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class FirstUpdade extends AsyncTask<Void, Void, String> {
-    public FirstUpdade(Context context) {
+    public FirstUpdade(MainActivity context) {
         this.context = context;
     }
 
-    private Context context;
+    private MainActivity context;
     private ProgressDialog dialog;
 
     @Override
@@ -47,6 +49,7 @@ public class FirstUpdade extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        context.setupTextWeek(WeekDay.MONDAY);
         dialog.dismiss();
     }
 
