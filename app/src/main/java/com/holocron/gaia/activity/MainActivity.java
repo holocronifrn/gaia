@@ -53,6 +53,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     }
 
+    protected void onStop(){
+        super.onStop();
+        finish();
+    }
+
     private void setupNavigationDrawer() {
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
