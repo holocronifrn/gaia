@@ -14,14 +14,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.holocron.gaia.Constants;
 import com.holocron.gaia.R;
 import com.holocron.gaia.model.WeekDay;
 import com.holocron.gaia.net.FirstUpdade;
 import com.holocron.gaia.net.NetworkStatus;
 import com.holocron.gaia.net.XlsxDownloadAsyncTask;
+import com.holocron.gaia.repository.cache.ControlDay;
 import com.holocron.gaia.repository.cache.CsvFileManagerRead;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -43,19 +50,64 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         textLunch = (TextView) findViewById(R.id.lunch);
         textDinner = (TextView) findViewById(R.id.dinner);
 
-        //UPDATE
-        update = new FirstUpdade(MainActivity.this);
-        update.execute();
-        //ENDUPDATE
-
         setupNavigationDrawer();
         setupWeekSpinner();
 
     }
 
-    protected void onStop(){
-        super.onStop();
-        finish();
+    protected void onResume() {
+        super.onResume();
+
+        long currentTime = System.currentTimeMillis();
+
+        File fileCard = new File(Constants.FILENAME);
+
+        Date dateFile = new Date(currentTime);
+        Date newDateFile = new Date(currentTime);
+        Date newDate = new Date(currentTime);
+
+        if (fileCard.exists()) {//Caso o arquivo não existe será atribuido a ele data ficticias para que possa ser realizado o dowload
+            //AJUSTANDO DATA
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+            ControlDay controlDay = new ControlDay();
+
+            String dateInString = null;
+            try {
+                dateInString = controlDay.data();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Date dateDoArquivo = formatter.parse(dateInString);
+                dateFile = dateDoArquivo;
+                //Log.d(Constants.TAG, "Data do arquivo " + dateDoArquivo);
+                //Log.d(Constants.TAG, "Data do arquivo formatado " + (formatter.format(dateDoArquivo)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+                //Log.d(Constants.TAG, "Erro na conversão ");
+            }
+            //Incrementando 7 dias na data com base na data anterior
+            Calendar c = Calendar.getInstance();
+            c.setTime(dateFile);
+            c.add(Calendar.DATE, 7);
+            newDateFile = c.getTime();
+            //END
+        }
+
+        if (newDateFile.before(newDate) || newDateFile.equals(newDate)) {
+            //UPDATE
+            update = new FirstUpdade(MainActivity.this);
+            update.execute();
+            //ENDUPDATE
+
+            setupNavigationDrawer();
+            setupWeekSpinner();
+
+        }
+
+
     }
 
     private void setupNavigationDrawer() {
