@@ -25,6 +25,8 @@ public class ControlDay {
         String returnData[] = weekDay.get(0).split(" ");
         String returnData2[] = returnData[7].split(",");
 
+        returnData[5] = returnData[5].toUpperCase();
+
         //A classe Date so recebe o nome do mes em ingles e as inicias, caso contrário tem que se usar numeros
         if(returnData[5].equals(Constants.janeiro)){
             returnData[5] = "01";
