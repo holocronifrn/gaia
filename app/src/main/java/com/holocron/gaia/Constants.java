@@ -18,6 +18,6 @@ public final class Constants {
     public static final String setembro = "SETEMBRO";
     public static final String outubro = "OUTUBRO";
     public static final String novembro = "NOVEMBRO";
-    //public static final String dezembro = "DEZEMBRO";
+    public static final String dezembro = "DEZEMBRO";
     //public static final String TAG = "DowloadTest";
 }

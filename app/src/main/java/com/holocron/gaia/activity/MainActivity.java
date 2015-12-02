@@ -45,19 +45,23 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Log.d("Activity", "onCreate");
+        Log.d("Activity", "onCreate");
 
         textLunch = (TextView) findViewById(R.id.lunch);
         textDinner = (TextView) findViewById(R.id.dinner);
 
+        Log.d("Activity1", "onCreate1");
+
         setupNavigationDrawer();
         setupWeekSpinner();
 
+        //Log.d("Activity1", "onCreate1");
     }
 
     protected void onResume() {
         super.onResume();
 
+        Log.d("Activity1", "onResume");
         long currentTime = System.currentTimeMillis();
 
         File fileCard = new File(Constants.FILENAME);
@@ -73,12 +77,17 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             ControlDay controlDay = new ControlDay();
 
             String dateInString = null;
+            Log.d("Activity1", "onResume");
             try {
+                Log.d("Activity1", "antes da data");
                 dateInString = controlDay.data();
+                Log.d("Activity1", "após da data");
             } catch (IOException e) {
+                Log.d("Activity1", "Exceção aqui");
                 e.printStackTrace();
             }
 
+            Log.d("Activity1", "onResume");
             try {
                 Date dateDoArquivo = formatter.parse(dateInString);
                 dateFile = dateDoArquivo;
@@ -95,7 +104,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             newDateFile = c.getTime();
             //END
         }
-
+        Log.d("Activity1", "onResume");
         if (newDateFile.before(newDate) || newDateFile.equals(newDate)) {
             //UPDATE
             update = new FirstUpdade(MainActivity.this);

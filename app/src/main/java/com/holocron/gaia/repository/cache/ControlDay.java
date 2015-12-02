@@ -1,5 +1,7 @@
 package com.holocron.gaia.repository.cache;
 
+import android.util.Log;
+
 import com.googlecode.jcsv.reader.CSVReader;
 import com.googlecode.jcsv.reader.internal.CSVReaderBuilder;
 import com.holocron.gaia.Constants;
@@ -14,17 +16,31 @@ public class ControlDay {
 
     public String data() throws IOException {
 
+        Log.d("Activity1", "class ControlDay init");
+
         Reader reader = new FileReader(Constants.FILENAME);
 
+        Log.d("Activity1", "class ControlDay file");
+
         CSVReader<String[]> csvMeatReader = CSVReaderBuilder.newDefaultReader(reader);
+
+        Log.d("Activity1", "class ControlDay csv");
 
         List<String[]> card = csvMeatReader.readAll();
 
         List<String> weekDay = Arrays.asList(card.get(0)[0]);
 
-        String returnData[] = weekDay.get(0).split(" ");
-        String returnData2[] = returnData[7].split(",");
+        String returnData[];
+        String returnData2[];
 
+        try{
+            returnData = weekDay.get(0).split(" ");
+            returnData2 = returnData[7].split(",");
+        }catch (Exception e){
+            return "16/10/2014";
+        }
+
+        Log.d("Activity1", "class ControlDay listCsv");
         returnData[5] = returnData[5].toUpperCase();
 
         //A classe Date so recebe o nome do mes em ingles e as inicias, caso contrário tem que se usar numeros
@@ -50,10 +66,11 @@ public class ControlDay {
             returnData[5] = "10";
         }else if(returnData[5].equals(Constants.novembro)){
             returnData[5] = "11";
-        }else /*if(returnData[5].equals(Constants.dezembro))*/{
+        }else if(returnData[5].equals(Constants.dezembro)){
             returnData[5] = "12";
+        } else{
+            return "16/10/2014";
         }
-
         return returnData[1] + "/" + returnData[5] + "/" + returnData2[0];
     }
 }
