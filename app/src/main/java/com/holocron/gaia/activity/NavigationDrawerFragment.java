@@ -1,5 +1,6 @@
 package com.holocron.gaia.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -254,6 +255,8 @@ public class NavigationDrawerFragment extends Fragment {
             } else {
                 Toast.makeText(this.getActivity(), "ERRO! Verifique Sua Conexão!", Toast.LENGTH_LONG).show();
             }
+        } else if(item.getItemId() == R.id.recl){
+            startActivity(new Intent(getActivity(), Reclame.class));
         }
 
         return super.onOptionsItemSelected(item);

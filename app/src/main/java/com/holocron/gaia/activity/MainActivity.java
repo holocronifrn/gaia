@@ -1,8 +1,10 @@
 package com.holocron.gaia.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.holocron.gaia.Constants;
 import com.holocron.gaia.R;
@@ -203,4 +206,5 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
 }
