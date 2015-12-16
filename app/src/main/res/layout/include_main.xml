@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <Spinner
                 android:id="@+id/semana_spinner"
                 android:layout_width="match_parent"
@@ -95,12 +96,14 @@
                             android:text="empty"
                             android:textColor="#000000"
                             android:textSize="15sp" />
-                    </TableRow>
 
+                    </TableRow>
                 </TableLayout>
             </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
+
+    <include layout="@layout/atualizacao_layout"/>
 
 </FrameLayout>

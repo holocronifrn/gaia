@@ -39,6 +39,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private FirstUpdade update;
     private TextView textLunch;
     private TextView textDinner;
+    private TextView tvDataDeAtualizacao;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -52,13 +53,27 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         textLunch = (TextView) findViewById(R.id.lunch);
         textDinner = (TextView) findViewById(R.id.dinner);
+        tvDataDeAtualizacao = (TextView) findViewById(R.id.tvAtualizacaoCardapio);
 
         Log.d("Activity1", "onCreate1");
 
         setupNavigationDrawer();
         setupWeekSpinner();
-
+        showUpdateMenu();
         //Log.d("Activity1", "onCreate1");
+    }
+
+    private void showUpdateMenu(){
+        ControlDay ctDay = new ControlDay();
+        try {
+
+            tvDataDeAtualizacao.setText("" + ctDay.dataAtualizacao());
+            Log.d("DataAtualização", " " + ctDay.dataAtualizacao());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("DataAtualização", "Não deu certo!" );
+        }
     }
 
     protected void onResume() {
@@ -120,6 +135,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         }
 
 
+    }
+
+    public void onButtonClick(View view){
+        startActivity(Reclame.class);
     }
 
     private void setupNavigationDrawer() {

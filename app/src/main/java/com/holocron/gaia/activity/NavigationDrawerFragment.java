@@ -255,9 +255,9 @@ public class NavigationDrawerFragment extends Fragment {
             } else {
                 Toast.makeText(this.getActivity(), "ERRO! Verifique Sua Conexão!", Toast.LENGTH_LONG).show();
             }
-        } else if(item.getItemId() == R.id.recl){
+        } /*else if(item.getItemId() == R.id.recl){
             startActivity(new Intent(getActivity(), Reclame.class));
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
