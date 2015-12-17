@@ -1,10 +1,8 @@
 package com.holocron.gaia.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.holocron.gaia.Constants;
 import com.holocron.gaia.R;
@@ -40,6 +37,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private TextView textLunch;
     private TextView textDinner;
     private TextView tvDataDeAtualizacao;
+    private boolean status = false;
+    private int num = 0;
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -131,10 +130,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
             setupNavigationDrawer();
             setupWeekSpinner();
-
+            showUpdateMenu();
         }
-
-
     }
 
     public void onButtonClick(View view){
@@ -158,9 +155,20 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                WeekDay day = WeekDay.getDay(position);
 
-                setupTextWeek(day);
+                if (status) {
+                    status = !status;
+                    WeekDay day = WeekDay.getDay(2);
+
+                    Log.d("Spinner1", "" + day);
+
+                    setupTextWeek(day);
+                } else {
+                    WeekDay day = WeekDay.getDay(position);
+
+                    Log.d("Spinner2", "No " + day);
+                    setupTextWeek(day);
+                }
             }
 
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -172,6 +180,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public void setupTextWeek(WeekDay weekDay) {
         String meatLunch = "";
         String meatDinner = "";
+
+        if(status){
+            status = !status;
+            weekDay = WeekDay.getDay(num);
+
+            Log.d("Spinner1","" + weekDay);
+
+            setupTextWeek(weekDay);
+        }
 
         CsvFileManagerRead csvFileManagerReadLunch = new CsvFileManagerRead(MainActivity.this);
 
@@ -205,11 +222,20 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         startActivity(new Intent(this, clazz));
     }
 
+    public void atualizadorDePosition(){
+        status = !status;
+        num = spinner.getSelectedItemPosition();
+    }
+
     private void updateXlsx() {
+
+        atualizadorDePosition();
+
         if (NetworkStatus.isConnected(this)) {//verifica se existe conexão
             //Referenciar o objeto novamente evida o erro de execução ao clicar várias vezes nele!
             XlsxDownloadAsyncTask downloadBackground = new XlsxDownloadAsyncTask(MainActivity.this);
             downloadBackground.execute();
+            Log.d("Spinner","Update");
         } else {
             Toast.makeText(MainActivity.this, "ERRO! Verifique Sua Conexão!", Toast.LENGTH_LONG).show();
         }
@@ -225,5 +251,4 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
-
 }

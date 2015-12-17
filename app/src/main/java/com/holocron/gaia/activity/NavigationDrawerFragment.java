@@ -1,6 +1,5 @@
 package com.holocron.gaia.activity;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -242,11 +241,15 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         if (item.getItemId() == R.id.atualizar) {
+
+            MainActivity m = (MainActivity)this.getActivity();
+            m.atualizadorDePosition();
             //BOTÃO ATUALIZAR CANTO!
             if (NetworkStatus.isConnected(getActivity())) {//verifica se existe conexão
                 //Referenciar o objeto novamente evida o erro de execução ao clicar várias vezes nele!

@@ -17,15 +17,15 @@ public class ControlDay {
 
     public String data() throws IOException {
 
-        Log.d("Activity1", "class ControlDay init");
+        //Log.d("Activity1", "class ControlDay init");
 
         Reader reader = new FileReader(Constants.FILENAME);
 
-        Log.d("Activity1", "class ControlDay file");
+        //Log.d("Activity1", "class ControlDay file");
 
         CSVReader<String[]> csvMeatReader = CSVReaderBuilder.newDefaultReader(reader);
 
-        Log.d("Activity1", "class ControlDay csv");
+        //Log.d("Activity1", "class ControlDay csv");
 
         List<String[]> card = csvMeatReader.readAll();
 
@@ -38,14 +38,14 @@ public class ControlDay {
             returnData = weekDay.get(0).split(" ");
             returnData2 = returnData[6].split(",");
         }catch (Exception e){
-            Log.d("DataAt1", "Entrou aqui!");
+            //Log.d("DataAt1", "Entrou aqui!");
             return "16/10/2014";
         }
 
-        Log.d("Activity1", "class ControlDay listCsv");
+        //Log.d("Activity1", "class ControlDay listCsv");
         returnData[4] = returnData[4].toUpperCase();
 
-        Log.d("DataAt1", returnData[4]);
+        //Log.d("DataAt1", returnData[4]);
 
         //A classe Date so recebe o nome do mes em ingles e as inicias, caso contrário tem que se usar numeros
         if(returnData[4].equals(Constants.janeiro)){
@@ -71,10 +71,10 @@ public class ControlDay {
         }else if(returnData[4].equals(Constants.novembro)){
             returnData[4] = "11";
         }else if(returnData[4].equals(Constants.dezembro)){
-            Log.d("DataAt1", "Sávio é gay!");
+            //Log.d("DataAt1", "Sávio é gay!");
             returnData[4] = "12";
         } else{
-            Log.d("DataAt1", "Sávio não é gay!");
+            //Log.d("DataAt1", "Sávio não é gay!");
             return "16/10/2014";
         }
         return returnData[1] + "/" + returnData[5] + "/" + returnData2[0];
@@ -90,7 +90,7 @@ public class ControlDay {
 
         String a[] = card.get(0)[0].split(",");
 
-        a[0].toLowerCase();
+        //a[0].toLowerCase();
 
         Log.d("DataAt", a[0]);
 
